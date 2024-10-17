@@ -1,6 +1,7 @@
 package com.example.valuesconverter
 
 import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +25,23 @@ class FeetToInchesFragment : Fragment() {
         btnSave = view.findViewById(R.id.btnSave)
 
         btnSave.setOnClickListener {
-            convertAndSave()
+            convertAndSave(
+                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+                if (sharedPref!= null) {
+                    with(sharedPref.edit()) {
+                        putString("last_feet_to_inches", convertedValue)
+                        apply()
+                    }
+                }
+            )
+            
         }
+       
+    val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+    val lastValue = sharedPref?.getString("last_km_to_miles", "")
+    if (!lastValue.isNullOrEmpty()) {
+        textMiles.text = "Last converted value: $lastValue"
+    }
 
         return view
     }
