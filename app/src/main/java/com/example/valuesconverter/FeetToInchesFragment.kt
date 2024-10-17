@@ -10,17 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-class KmToMilesFragment : Fragment() {
+class FeetToInchesFragment : Fragment() {
 
-    private lateinit var editKm: EditText
-    private lateinit var textMiles: TextView
+    private lateinit var editFeet: EditText
+    private lateinit var textInches: TextView
     private lateinit var btnSave: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_km_to_miles, container, false)
+        val view = inflater.inflate(R.layout.fragment_feet_to_inches, container, false)
 
-        editKm = view.findViewById(R.id.editKm)
-        textMiles = view.findViewById(R.id.textMiles)
+        editFeet = view.findViewById(R.id.editFeet)
+        textInches = view.findViewById(R.id.textInches)
         btnSave = view.findViewById(R.id.btnSave)
 
         btnSave.setOnClickListener {
@@ -31,11 +31,11 @@ class KmToMilesFragment : Fragment() {
     }
 
     private fun convertAndSave() {
-        val kmStr = editKm.text.toString()
-        if (kmStr.isNotEmpty()) {
-            val km = kmStr.toDouble()
-            val miles = km * 0.621371
-            textMiles.text = "Miles: ${String.format("%.3f", miles)}"
+        val feetStr = editFeet.text.toString()
+        if (feetStr.isNotEmpty()) {
+            val feet = feetStr.toDouble()
+            val inches = feet * 12
+            textInches.text = "Inches: ${String.format("%.1f", inches)}"
             // TODO: Save to SharedPreferences
         } else {
             Toast.makeText(context, "Please enter a value", Toast.LENGTH_SHORT).show()
