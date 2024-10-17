@@ -25,23 +25,15 @@ class FeetToInchesFragment : Fragment() {
         btnSave = view.findViewById(R.id.btnSave)
 
         btnSave.setOnClickListener {
-            convertAndSave(
-                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                if (sharedPref!= null) {
-                    with(sharedPref.edit()) {
-                        putString("last_feet_to_inches", convertedValue)
-                        apply()
-                    }
-                }
-            )
-            
+            convertAndSave()
         }
        
-    val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-    val lastValue = sharedPref?.getString("last_km_to_miles", "")
-    if (!lastValue.isNullOrEmpty()) {
-        textMiles.text = "Last converted value: $lastValue"
-    }
+        // Load and display the last converted value
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val lastValue = sharedPref?.getString("last_feet_to_inches", "")
+        if (!lastValue.isNullOrEmpty()) {
+            textInches.text = "Last converted value: $lastValue inches"
+        }
 
         return view
     }
@@ -51,8 +43,15 @@ class FeetToInchesFragment : Fragment() {
         if (feetStr.isNotEmpty()) {
             val feet = feetStr.toDouble()
             val inches = feet * 12
-            textInches.text = "Inches: ${String.format("%.1f", inches)}"
-            // TODO: Save to SharedPreferences
+            val convertedValue = String.format("%.1f", inches)
+            textInches.text = "Inches: $convertedValue"
+            
+            // Save to SharedPreferences
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            sharedPref?.edit()?.apply {
+                putString("last_feet_to_inches", convertedValue)
+                apply()
+            }
         } else {
             Toast.makeText(context, "Please enter a value", Toast.LENGTH_SHORT).show()
         }

@@ -24,18 +24,12 @@ class KmToMilesFragment : Fragment() {
         textMiles = view.findViewById(R.id.textMiles)
         btnSave = view.findViewById(R.id.btnSave)
 
+        // Set onClickListener for the Save button
         btnSave.setOnClickListener {
-            convertAndSave(
-                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                if (sharedPref!= null) {
-                    with(sharedPref.edit()) {
-                        putString("last_km_to_miles", convertedValue)
-                        apply()
-                    }
-                }
-            )
+            convertAndSave() // Call the convert and save method
         }
 
+        // Load and display the last converted value (if available)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val lastValue = sharedPref?.getString("last_km_to_miles", "")
         if (!lastValue.isNullOrEmpty()) {
@@ -45,13 +39,23 @@ class KmToMilesFragment : Fragment() {
         return view
     }
 
+    // Method to convert kilometers to miles and save the result
     private fun convertAndSave() {
         val kmStr = editKm.text.toString()
         if (kmStr.isNotEmpty()) {
             val km = kmStr.toDouble()
             val miles = km * 0.621371
-            textMiles.text = "Miles: ${String.format("%.3f", miles)}"
-            // TODO: Save to SharedPreferences
+            val convertedValue = String.format("%.3f", miles)
+            textMiles.text = "Miles: $convertedValue"
+
+            // Save the converted value in SharedPreferences
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            sharedPref?.let {
+                with(it.edit()) {
+                    putString("last_km_to_miles", convertedValue)
+                    apply()
+                }
+            }
         } else {
             Toast.makeText(context, "Please enter a value", Toast.LENGTH_SHORT).show()
         }

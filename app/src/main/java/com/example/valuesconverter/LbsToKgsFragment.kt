@@ -24,17 +24,12 @@ class LbsToKgsFragment : Fragment() {
         textKgs = view.findViewById(R.id.textKgs)
         btnSave = view.findViewById(R.id.btnSave)
 
+        // Set onClickListener for the Save button
         btnSave.setOnClickListener {
-            convertAndSave(
-                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                if (sharedPref!= null) {
-                    with(sharedPref.edit()) {
-                        putString("last_lbs_to_kgs", convertedValue)
-                        apply()
-                    }
-                }
-            )
+            convertAndSave() // Call the convert and save method
         }
+
+        // Load and display the last converted value (if available)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val lastValue = sharedPref?.getString("last_lbs_to_kgs", "")
         if (!lastValue.isNullOrEmpty()) {
@@ -44,13 +39,23 @@ class LbsToKgsFragment : Fragment() {
         return view
     }
 
+    // Method to convert pounds to kilograms and save the result
     private fun convertAndSave() {
         val lbsStr = editLbs.text.toString()
         if (lbsStr.isNotEmpty()) {
             val lbs = lbsStr.toDouble()
             val kgs = lbs * 0.453592
-            textKgs.text = "KGs: ${String.format("%.3f", kgs)}"
-            // TODO: Save to SharedPreferences
+            val convertedValue = String.format("%.3f", kgs)
+            textKgs.text = "KGs: $convertedValue"
+
+            // Save the converted value in SharedPreferences
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            sharedPref?.let {
+                with(it.edit()) {
+                    putString("last_lbs_to_kgs", convertedValue)
+                    apply()
+                }
+            }
         } else {
             Toast.makeText(context, "Please enter a value", Toast.LENGTH_SHORT).show()
         }
