@@ -1,47 +1,66 @@
-package com.example.newsapp
-
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.newsapp.ui.theme.NewsAppTheme
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var spinnerRegion: Spinner
+    private lateinit var spinnerTopic: Spinner
+    private lateinit var buttonGetNews: Button
+    private var selectedRegion: String = "us" // Default region
+    private var selectedTopic: String = "general" // Default topic
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            NewsAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        setContentView(R.layout.activity_main)
+
+        spinnerRegion = findViewById(R.id.spinnerRegion)
+        spinnerTopic = findViewById(R.id.spinnerTopic)
+        buttonGetNews = findViewById(R.id.buttonGetNews)
+
+        setupSpinners()
+        setupButtonListener()
+    }
+
+    private fun setupSpinners() {
+        val regionAdapter = ArrayAdapter.createFromResource(this,
+            R.array.regions, android.R.layout.simple_spinner_item)
+        regionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerRegion.adapter = regionAdapter
+
+        spinnerRegion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                selectedRegion = parent.getItemAtPosition(position).toString().lowercase()
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        val topicAdapter = ArrayAdapter.createFromResource(this,
+            R.array.topics, android.R.layout.simple_spinner_item)
+        topicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerTopic.adapter = topicAdapter
+
+        spinnerTopic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                selectedTopic = parent.getItemAtPosition(position).toString().lowercase()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NewsAppTheme {
-        Greeting("Android")
+    private fun setupButtonListener() {
+        buttonGetNews.setOnClickListener {
+            val intent = Intent(this, NewsActivity::class.java)
+            intent.putExtra("region", selectedRegion)
+            intent.putExtra("topic", selectedTopic)
+            startActivity(intent)
+        }
     }
 }
