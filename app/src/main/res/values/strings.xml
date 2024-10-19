@@ -1,20 +1,22 @@
-<string name="app_name">NewsApp</string>
+<resources>
+    <string name="app_name">NewsApp</string>
 
-<string-array name="regions">
-    <item>us</item>
-    <item>ca</item>
-    <item>gb</item>
-    <item>au</item>
-    <item>de</item>
-    <item>fr</item>
-</string-array>
+    <string-array name="regions">
+        <item>us</item>
+        <item>ca</item>
+        <item>gb</item>
+        <item>au</item>
+        <item>de</item>
+        <item>fr</item>
+    </string-array>
 
-<string-array name="topics">
-    <item>general</item>
-    <item>business</item>
-    <item>entertainment</item>
-    <item>health</item>
-    <item>science</item>
-    <item>sports</item>
-    <item>technology</item>
-</string-array>
+    <string-array name="topics">
+        <item>general</item>
+        <item>business</item>
+        <item>entertainment</item>
+        <item>health</item>
+        <item>science</item>
+        <item>sports</item>
+        <item>technology</item>
+    </string-array>
+</resources>
