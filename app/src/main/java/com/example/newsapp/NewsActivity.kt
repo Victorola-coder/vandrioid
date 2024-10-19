@@ -8,6 +8,8 @@ import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import java.io.IOException
 import java.lang.reflect.Type
+import com.example.newsapp.R
+import kotlin.collections.List 
 
 class NewsActivity : AppCompatActivity() {
 
@@ -52,7 +54,11 @@ class NewsActivity : AppCompatActivity() {
         val gson = Gson()
         val newsListType: Type = object : TypeToken<NewsResponse>() {}.type
         val newsResponse: NewsResponse = gson.fromJson(jsonResponse, newsListType)
-        val newsItems = newsResponse.articles
+        
+        // Explicitly create a List<NewsItem>
+        val newsItems: kotlin.collections.List<NewsItem> = newsResponse.articles?.let { articles ->
+            articles.mapNotNull { it as? NewsItem }
+        } ?: emptyList()
 
         runOnUiThread {
             newsAdapter = NewsAdapter(newsItems, this)
@@ -60,3 +66,12 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 }
+
+// Ensure these data classes are defined correctly
+data class NewsResponse(val articles: kotlin.collections.List<NewsItem>?)
+data class NewsItem(
+    val title: String,
+    val description: String?,
+    val url: String,
+    val urlToImage: String?
+)

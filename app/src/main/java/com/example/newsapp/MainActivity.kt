@@ -1,5 +1,6 @@
 import android.content.Intent
 import android.os.Bundle
+import com.example.newsapp.R
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
