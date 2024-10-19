@@ -34,7 +34,7 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private void fetchNews(String region, String topic) {
-        String apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+        String apiKey = "f3e92ce9f7cc4bdd806eb00d983d443e"; 
         String url = "https://newsapi.org/v2/top-headlines?country=" + region + "&category=" + topic + "&apiKey=" + apiKey;
 
         OkHttpClient client = new OkHttpClient();

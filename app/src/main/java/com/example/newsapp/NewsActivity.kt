@@ -28,7 +28,7 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun fetchNews(region: String, topic: String) {
-        val apiKey = "YOUR_API_KEY" // Replace with your actual API key
+        val apiKey = "f3e92ce9f7cc4bdd806eb00d983d443e" 
         val url = "https://newsapi.org/v2/top-headlines?country=$region&category=$topic&apiKey=$apiKey"
 
         val client = OkHttpClient()
