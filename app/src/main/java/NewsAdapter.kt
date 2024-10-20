@@ -26,14 +26,13 @@ class NewsAdapter(private val newsItems: List<NewsItem>) :
 
         Glide.with(holder.itemView.context)
             .load(newsItem.imageUrl)
-            .placeholder(R.drawable.placeholder_image) // Make sure this drawable exists
-            .error(R.drawable.error_image) // Make sure this drawable exists
+            .placeholder(R.drawable.placeholder_image) 
+            .error(R.drawable.error_image) 
             .into(holder.image)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, FullNewsActivity::class.java).apply {
                 putExtra("url", newsItem.url)
-                // Remove author and content if they're not part of NewsItem
             }
             holder.itemView.context.startActivity(intent)
         }
