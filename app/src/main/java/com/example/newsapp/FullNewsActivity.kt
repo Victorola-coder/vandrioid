@@ -1,4 +1,3 @@
-// FullNewsActivity.kt
 package com.example.newsapp
 
 import android.os.Bundle
@@ -19,17 +18,14 @@ class FullNewsActivity : AppCompatActivity() {
         val content = intent.getStringExtra("content")
 
         // Display the author and content in TextViews
-        val authorTextView = findViewById<TextView>(R.id.newsAuthor)
-        val contentTextView = findViewById<TextView>(R.id.newsContent)
-        val webView = findViewById<WebView>(R.id.newsWebView)
+        val authorTextView: TextView = findViewById(R.id.newsAuthor)
+        val contentTextView: TextView = findViewById(R.id.newsContent)
+        val webView: WebView = findViewById(R.id.newsWebView)
 
-        authorTextView.text = author ?: "Unknown Author" // Handle null case
-        contentTextView.text = content ?: "No Content Available" // Handle null case
+        authorTextView.text = author ?: getString(R.string.unknown_author)
+        contentTextView.text = content ?: getString(R.string.no_content_available)
 
         // Load the full article in a WebView
-        if (url != null) {
-            webView.loadUrl(url)
-        }
+        url?.let { webView.loadUrl(it) }
     }
 }
-`

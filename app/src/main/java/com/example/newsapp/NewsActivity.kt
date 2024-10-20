@@ -55,23 +55,20 @@ class NewsActivity : AppCompatActivity() {
         val newsListType: Type = object : TypeToken<NewsResponse>() {}.type
         val newsResponse: NewsResponse = gson.fromJson(jsonResponse, newsListType)
         
-        // Explicitly create a List<NewsItem>
-        val newsItems: kotlin.collections.List<NewsItem> = newsResponse.articles?.let { articles ->
-            articles.mapNotNull { it as? NewsItem }
-        } ?: emptyList()
+        val newsItems: List<NewsItem> = newsResponse.articles ?: emptyList()
 
         runOnUiThread {
-            newsAdapter = NewsAdapter(newsItems, this)
+            newsAdapter = NewsAdapter(newsItems)
             recyclerView.adapter = newsAdapter
         }
     }
 }
 
-// Ensure these data classes are defined correctly
-data class NewsResponse(val articles: kotlin.collections.List<NewsItem>?)
-data class NewsItem(
-    val title: String,
-    val description: String?,
-    val url: String,
-    val urlToImage: String?
-)
+// Remove or comment out these data classes if they're defined elsewhere
+// data class NewsResponse(val articles: List<NewsItem>?)
+// data class NewsItem(
+//     val title: String,
+//     val description: String?,
+//     val url: String,
+//     val urlToImage: String?
+// )

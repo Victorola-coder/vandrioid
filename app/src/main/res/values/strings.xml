@@ -19,4 +19,6 @@
         <item>sports</item>
         <item>technology</item>
     </string-array>
+    <string name="unknown_author">Unknown Author</string>
+    <string name="no_content_available">No Content Available</string>
 </resources>
