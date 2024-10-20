@@ -1,6 +1,7 @@
 package com.example.valuesconverter
 
 import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.valuesconverter.ui.theme.ValuesConverterTheme
+import androidx.compose.foundation.text.KeyboardOptions
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,7 +142,7 @@ fun ConverterScreen(
                 errorMessage = ""
             },
             label = { Text(fromUnit) },
-            keyboardType = KeyboardType.Number,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
