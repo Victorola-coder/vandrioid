@@ -23,12 +23,12 @@ class NewsAdapter(private val newsItems: List<NewsItem>) :
         val newsItem = newsItems[position]
         holder.title.text = newsItem.title
         holder.description.text = newsItem.description
-
-        Glide.with(holder.itemView.context)
-            .load(newsItem.imageUrl)
-            .placeholder(R.drawable.placeholder_image) 
-            .error(R.drawable.error_image) 
-            .into(holder.image)
+//
+//        Glide.with(holder.itemView.context)
+//            .load(newsItem.imageUrl)
+//            .placeholder(R.drawable.placeholder_image)
+//            .error(R.drawable.error_image)
+//            .into(holder.image)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, FullNewsActivity::class.java).apply {
