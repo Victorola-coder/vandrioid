@@ -2,60 +2,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Drawing Area -->
-    <com.example.androiddrawingpad.DrawingView
+    <com.example.drawingpad.DrawingView
         android:id="@+id/drawingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/toolsLayout" />
+        android:layout_above="@+id/toolSection"/>
 
-    <!-- Tools for Colors and Sizes -->
     <LinearLayout
-        android:id="@+id/toolsLayout"
+        android:id="@+id/toolSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:background="#EEE"
+        android:padding="10dp">
 
-        <!-- Color Buttons -->
+        <!-- Add color buttons -->
         <Button
-            android:id="@+id/redButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/colorRed"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Red" />
-        <Button
-            android:id="@+id/blueButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Blue" />
-        <Button
-            android:id="@+id/greenButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Green" />
+            android:layout_weight="1"
+            android:background="#F00"/>
 
-        <!-- Line Width Buttons -->
         <Button
-            android:id="@+id/smallButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/colorGreen"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Small" />
-        <Button
-            android:id="@+id/mediumButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medium" />
-        <Button
-            android:id="@+id/largeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large" />
+            android:layout_weight="1"
+            android:background="#0F0"/>
 
-        <!-- Clear Button -->
+        <Button
+            android:id="@+id/colorBlue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F"/>
+
+        <!-- Add width buttons -->
+        <Button
+            android:id="@+id/widthSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Small"/>
+
+        <Button
+            android:id="@+id/widthMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium"/>
+
+        <Button
+            android:id="@+id/widthLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Large"/>
+
+        <!-- Trash can button -->
         <Button
             android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:layout_weight="1"
+            android:text="Clear"/>
     </LinearLayout>
 </RelativeLayout>
