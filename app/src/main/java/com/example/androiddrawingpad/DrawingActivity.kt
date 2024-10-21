@@ -1,3 +1,4 @@
+package com.example.androiddrawingpad
 import android.graphics.Color
 import android.os.Bundle
 import android.content.Intent
@@ -5,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.androiddrawingpad.R
 import android.widget.Button
 import android.widget.ImageButton
+import com.example.androiddrawingpad.DrawingActivity
+import com.example.androiddrawingpad.DrawingView 
 
 
+data class MyType(val name: String, val value: Int)
 
 class DrawingActivity : AppCompatActivity() {
 
@@ -51,5 +55,8 @@ class DrawingActivity : AppCompatActivity() {
 
        
         clearButton.setOnClickListener { drawingView.clear() }
+
+        
+        val myList: List<MyType> = listOf()
     }
 }
