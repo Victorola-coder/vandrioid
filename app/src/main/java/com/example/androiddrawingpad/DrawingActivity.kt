@@ -54,7 +54,7 @@ class DrawingActivity : AppCompatActivity() {
         widthLarge.setOnClickListener { drawingView.setStrokeWidth(20f) }
 
        
-        clearButton.setOnClickListener { drawingView78.clear() }
+        clearButton.setOnClickListener { drawingView.clear() }
 
         
         val myList: List<MyType> = listOf()

@@ -18,21 +18,21 @@
         android:padding="10dp">
 
         <!-- Add color buttons -->
-        <Button
+        <ImageButton
             android:id="@+id/colorRed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#F00"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/colorGreen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#0F0"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/colorBlue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
